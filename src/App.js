@@ -1,33 +1,32 @@
-// import React, {Component} from 'react';
-
-// class App extends Component{
-//   render(){
-//     // const greeting = "Hi! tom"
-//     // const dom = <h1 className= "foo">{greeting}</h1>;
-//     // return dom;
-
-//     // return <input type="text" onClick={() => {console.log("I am clicked")}}/>
-//     // return <input type="text" onChange={() => {console.log("I am clicked")}}/>
-
-//     return(
-//       <React.Fragment>
-//         <label htmlFor="bar">bar</label>
-//         <input type="text" onClick={() => {console.log("I am clicked")}}/>
-//       </React.Fragment>
-//     )
-//   }
-// }
+import React from 'react';
 
 const App = () => {
-  return <div>
-    <Cat />
-    <Cat />
-    
-    </div>
+  const profiles = [
+    {name : "Taro", age : 10},
+    {name : "hanako", age : 10},
+    {name : "itiro", age : 10},
+    {name : "jiro"}
+  ]
+  return (
+  <div>
+    {
+      profiles.map( (profile, index) => {
+        return <User name={profile.name} age={profile.age} key={index}/>
+      }
+      )
+    }
+    <User name={"Taro"} age={20}/>
+    <User name={"Hanako"} age={5}/>
+  </div>
+  )
 }
 
-const Cat = () => {
-  return <div>meow!</div>
+const User = (props) => {
+  return <div>I am {props.name} , and {props.age}years old!</div>
+}
+
+User.defaultProps = { //年齢がなかったらデフォルトで1歳になる
+  age: 1
 }
 
 export default App;
